@@ -14,6 +14,8 @@
   --footer-address-color: #ffffff;
   --portfolio-btn-bg-color: #f5f4fa;
   --card-margin--: 30px;
+  --cubic-bezier--: cubic-bezier(0.4, 0, 0.2, 1) --;
+  --time-hov-fok--: 250ms;
 }
 
 body {
@@ -85,9 +87,9 @@ section {
 
 /*------------- шапка сайта стили ---------------------------*/
 
-.head {
+/* .head {
   border-bottom: 1px solid #ececec;
-}
+} */
 
 header .container {
   display: flex;
@@ -100,9 +102,6 @@ header .container {
 
 .header-contakt {
   display: flex;
-}
-
-.container-contakt {
 }
 
 .header-logo {
@@ -123,25 +122,36 @@ header .container {
   color: var(--hedear-logo);
 }
 
-.header-link {
-  padding-top: 32px;
-  padding-bottom: 32px;
-}
-
 .header-item:not(:last-child) {
   margin-right: 50px;
 }
 
 .header-link {
+  position: relative;
   font-weight: 500;
   font-size: 14px;
   line-height: calc(16 / 14);
   letter-spacing: 0.02em;
+  padding-top: 32px;
+  padding-bottom: 32px;
   color: var(--primary-text-color);
+  transition: color var(--time-hov-fok--) var(--cubic-bezier--);
 }
 .header-link:hover,
 .header-link:focus {
   color: var(--accent-color);
+}
+
+.current::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: var(--accent-color);
 }
 
 .current {
@@ -175,6 +185,7 @@ header .container {
   line-height: calc(16 / 14);
   letter-spacing: 0.02em;
   color: var(--secondary-text-color);
+  transition: color var(--time-hov-fok--) var(--cubic-bezier--);
 }
 .header-mail:hover,
 .header-mail:focus,
@@ -230,6 +241,7 @@ header .container {
   min-width: 200px;
   min-height: 50px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  transition: bacground-color var(--time-hov-fok--) var(--cubic-bezier--);
 }
 .hero-btn:hover,
 .hero-btn:focus {
@@ -307,11 +319,34 @@ header .container {
 }
 
 .about-photos {
+  position: relative;
   width: 370px;
 }
 
 .about-photos:not(:last-child) {
   margin-right: 30px;
+}
+
+.about-thumb {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 370px;
+  height: 70px;
+  background-color: tomato;
+  padding-top: 27px;
+  padding-bottom: 27px;
+  background: rgba(47, 48, 58, 0.8);
+}
+
+.about-img-title {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: calc(16 / 14);
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--main-title-color);
 }
 
 /* ----------------------наша команда---------------- */
@@ -371,6 +406,8 @@ header .container {
   justify-content: center;
   align-items: center;
   color: #afb1b8;
+  transition: background-color var(--time-hov-fok--) var(--cubic-bezier--),
+    color var(--time-hov-fok--) var(--cubic-bezier--);
 }
 
 .teams-social-icon {
@@ -427,6 +464,8 @@ header .container {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: color var(--time-hov-fok--) var(--cubic-bezier--),
+    border var(--time-hov-fok--) var(--cubic-bezier--);
 }
 
 .client-logo-icon {
@@ -497,6 +536,7 @@ header .container {
   line-height: calc(24 / 14);
   letter-spacing: 0.03em;
   color: var(--footer-mail-tel);
+  transition: color var(--time-hov-fok--) var(--cubic-bezier--);
 }
 .address-mail:hover,
 .address-mail:focus,
@@ -532,6 +572,7 @@ header .container {
   justify-content: center;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
+  transition: background-color var(--time-hov-fok--) var(--cubic-bezier--);
 }
 
 .footer-social-icon {
@@ -573,6 +614,9 @@ header .container {
   padding: 4px 22px;
   border-radius: 4px;
   border: none;
+  transition: background-color var(--time-hov-fok--) var(--cubic-bezier--),
+    color var(--time-hov-fok--) var(--cubic-bezier--),
+    box-shadow var(--time-hov-fok--) var(--cubic-bezier--);
 }
 
 .photo-btn:hover,
@@ -632,4 +676,48 @@ header .container {
   line-height: calc(30 / 16);
   letter-spacing: 0.03em;
   color: var(--secondary-text-color);
+}
+
+/* ----------------MODAL WINDOW----------------- */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 528px;
+  min-height: 581px;
+  background-color: var(--body-bg-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  min-height: 30px;
+  border: 1px solid #0000001a;
+  border-radius: 50%;
+  background-color: #ffffff;
+  cursor: pointer;
 }
