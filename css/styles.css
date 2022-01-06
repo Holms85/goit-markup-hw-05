@@ -333,10 +333,9 @@ header .container {
   bottom: 0;
   width: 370px;
   height: 70px;
-  background-color: tomato;
   padding-top: 27px;
   padding-bottom: 27px;
-  background: rgba(47, 48, 58, 0.8);
+  background-color: rgba(47, 48, 58, 0.8);
 }
 
 .about-img-title {
@@ -634,12 +633,10 @@ header .container {
   margin-bottom: -30px;
 }
 
-/* .photo-item > a > img {
-  display: block;
-} */
-
 .photo-link {
+  position: relative;
   display: block;
+  transition: box-shadow var(--time-hov-fok--) var(--cubic-bezier--);
 }
 
 .photo-item {
@@ -653,6 +650,47 @@ header .container {
 .photo-link:focus {
   box-shadow: 1px 4px 6px 0px #00000029, 0px 4px 4px 0px #0000000f,
     0px 1px 1px 0px #0000001f;
+}
+
+.photo-link:hover::before,
+.photo-link:focus::before {
+  opacity: 1;
+}
+
+.photo-link::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 370px;
+  height: 294px;
+  padding: 63px 24px;
+  background: rgba(33, 150, 243, 0.9);
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+}
+
+.photo-thumb-portfolio {
+  position: absolute;
+  width: 322px;
+  height: 168px;
+  top: 63px;
+  left: 24px;
+  opacity: 0;
+}
+
+.photo-portfolio-text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(28 / 18);
+  letter-spacing: 0.03em;
+  color: #ffffff;
+}
+
+.photo-link:hover .photo-thumb,
+.photo-link:focus .photo-thumb {
+  opacity: 1;
 }
 
 .photo-thumb {
@@ -690,6 +728,7 @@ header .container {
 }
 
 .backdrop.is-hidden {
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
 }
@@ -705,6 +744,7 @@ header .container {
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  transform: scale(1.25);
 }
 
 .modal-btn {
