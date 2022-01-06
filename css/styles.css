@@ -688,8 +688,8 @@ header .container {
   color: #ffffff;
 }
 
-.photo-link:hover .photo-thumb,
-.photo-link:focus .photo-thumb {
+.photo-link:hover .photo-thumb-portfolio,
+.photo-link:focus .photo-thumb-portfolio {
   opacity: 1;
 }
 
